@@ -52,6 +52,23 @@ public class BooksController : ControllerBase
         }
     }
 
+    [HttpGet("copies/{id}/status")]
+    public async Task<IActionResult> GetCopyStatus(Guid id)
+    {
+        try
+        {
+            var status = await _bookService.GetCopyStatusAsync(id);
+            if (status == null)
+                return NotFound($"Copy with ID {id} not found");
+
+            return Ok(new { status });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
+    }
+
     [HttpPut("copies/{id}/status")]
     public async Task<IActionResult> UpdateCopyStatus(Guid id, [FromBody] UpdateCopyStatusRequest request)
     {

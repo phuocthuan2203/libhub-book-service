@@ -79,6 +79,12 @@ public class BookService : IBookService
         };
     }
 
+    public async Task<string?> GetCopyStatusAsync(Guid copyId)
+    {
+        var copy = await _bookRepository.GetCopyByIdAsync(copyId);
+        return copy?.Status;
+    }
+
     public async Task<bool> UpdateCopyStatusAsync(Guid copyId, string newStatus)
     {
         var copy = await _bookRepository.GetCopyByIdAsync(copyId);
