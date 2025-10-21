@@ -1,0 +1,104 @@
+@LibHub.BookService_HostAddress = http://localhost:5266
+
+### Create a new book with 3 copies
+POST {{LibHub.BookService_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "isbn": "9780134685991",
+  "title": "Effective Java",
+  "author": "Joshua Bloch",
+  "genre": "Programming",
+  "description": "A comprehensive guide to Java best practices and design patterns",
+  "initialCopyCount": 3
+}
+
+###
+
+### Create another book
+POST {{LibHub.BookService_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "isbn": "9780135957059",
+  "title": "The Pragmatic Programmer",
+  "author": "David Thomas & Andrew Hunt",
+  "genre": "Programming",
+  "description": "Your journey to mastery in software development",
+  "initialCopyCount": 2
+}
+
+###
+
+### Create a third book
+POST {{LibHub.BookService_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "isbn": "9780132350884",
+  "title": "Clean Code",
+  "author": "Robert C. Martin",
+  "genre": "Programming",
+  "description": "A handbook of agile software craftsmanship",
+  "initialCopyCount": 5
+}
+
+###
+
+### Search books by title (replace with actual search term)
+GET {{LibHub.BookService_HostAddress}}/api/books/search?query=Java
+Accept: application/json
+
+###
+
+### Search books by author
+GET {{LibHub.BookService_HostAddress}}/api/books/search?query=Martin
+Accept: application/json
+
+###
+
+### Get book details by ID (replace {bookId} with actual ID from create response)
+GET {{LibHub.BookService_HostAddress}}/api/books/{7d7c4a41-aeb9-4d65-84e8-df28816c0318}
+Accept: application/json
+
+###
+
+### Update copy status to "On Loan" (replace {copyId} with actual copy ID)
+PUT {{LibHub.BookService_HostAddress}}/api/books/copies/{5fa00206-a487-4a38-8e4f-5117ab544edd}/status
+Content-Type: application/json
+
+{
+  "status": "On Loan"
+}
+
+###
+
+### Update copy status to "Available"
+PUT {{LibHub.BookService_HostAddress}}/api/books/copies/{5fa00206-a487-4a38-8e4f-5117ab544edd}/status
+Content-Type: application/json
+
+{
+  "status": "Available"
+}
+
+###
+
+### Update copy status to "Damaged"
+PUT {{LibHub.BookService_HostAddress}}/api/books/copies/{8eca317e-2987-4620-ae06-726e279783aa}/status
+Content-Type: application/json
+
+{
+  "status": "Damaged"
+}
+
+###
+
+### Update copy status to "Lost"
+PUT {{LibHub.BookService_HostAddress}}/api/books/copies/{8e8862c0-09d2-4931-926d-36e1e715c572}/status
+Content-Type: application/json
+
+{
+  "status": "Lost"
+}
+
+###
